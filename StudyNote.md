@@ -40,3 +40,15 @@
                 + Có thể viết thành Pipeline
                     - Pipeline các Transformer
                     - Và có ColumnTransformer --> Cần xác định thêm cột nào sẽ bị ảnh hưởng
+    5. Select and Train a Model
+        1. Train model thì giới thiệu chill chill LinearRegression, DecisionTreeRegressor
+        2. Dùng Cross Validation
+            - trong Scikit-Learn nó là cross_val_score
+    6. Fine-Tune your model
+        1. Grid Search
+        2. Randomized Search
+        3. HalvingGridSearch
+        4. Gộp nhiều mô hình (Essembled Methods)
+        5. Phân tích mô hình tốt nhất và Lỗi của chúng
+        6. Evaluate
+    7. Launch and Monitoring
