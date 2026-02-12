@@ -85,3 +85,37 @@
         - Chương này thì cũng không nói gì mấy
         - Multiouput vì nó vừa phải học nếu đó là Số 7 thì cần xóa noise chỗ nào, giữ color chỗ nào
         - Cách giải thì cũng chỉ ccaafn thay phần y cần predict thành X_train lúc Clean background là xong
+4. Chương 4: Chương này nhiều công thức quá, viết vô tập nha ae
+    1. Linear Regression
+        1. The Normal Equation
+        2. Computational Complexity
+    2. Gradient Descent
+        1. Batch Gradient Descent
+        2. Stochastic Gradient Descent
+        3. Mini-batch Gradient Descent
+    3. Polynominal Regression
+    4. Learning Curves
+    5. Regularized Linear Models
+        1. Ridge Regression
+            - w^2: Giữ tất cả feature, chỉ làm chậm, không đưa về 0
+        2. Lasso Regression
+            - w: Có thể đưa nhiều feature về 0
+        3. Elastic Net Regression
+            - Kết hợp cả 2
+            - Dùng khi
+                + Khi số Feature lớn
+                + Có nhiều Feature liên quan
+                + Khi lasso chọn một feature và loại các feature tương tự
+        4. Early Stopping
+    5. Logistic Regression
+        1. Estimating Probabilities
+            - Logistic Function: Output chỉ cần là số thuộc [0,1]
+        2. Training and Cost Function
+            - Loss Function: Mỗi lần cập nhật là giảm log(nhãn đúng)
+        3. Decision Boundaries
+            - Vị trí mà tỉ lệ nhận diện là 50 50
+        4. Softmax Regression
+            - multinomial logistic regression
+            - Là công thức tổng quát của Logistic Regression để xử lý trên đa class
+        5. Cross Entropy (Loss Function trong Classification)
+5. Chương 5: Support Vector Machine
