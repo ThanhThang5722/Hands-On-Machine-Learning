@@ -52,3 +52,36 @@
         5. Phân tích mô hình tốt nhất và Lỗi của chúng
         6. Evaluate
     7. Launch and Monitoring
+3. Chương 3: Classification
+    1. MNIST
+    2. Binary Classifier
+    3. Performance Measures
+        1. Vẫn dùng KFold
+            -  Nhưng chỉ KFold là chưa đủ
+            - Vì nó lệch nhãn -> Dự đoán nhãn nào bị lệch thì accuracy tự động cao
+        2. F1-Score
+            - Precision: Hàng ngang 1 - Tỷ lệ dự đoán đúng thật sự đúng
+            - Recall: Hàng dọc 1 - Tỷ lệ vét được tất cả trường hợp đúng
+            - F1 Score:  Tích trên trung bình
+                     = Recall * Precision * 2 / (Recall + Precision)
+        3. ROC và AUC
+            + ROC = Recall / Fall-out
+            + Recall: Tỷ lệ tỉnh táo vết được tập đúng
+            + Fall-out: Tỷ lệ nhầm lẫn trên tập sai
+            + AUC: Area Under Curve, vùng diện tích dưới đường cong càng to mô hình càng tốt
+        4.  Dùng F1 Score khi quan tâm đến nhãn đúng, hay nhãn đó nó bị lệch (ít quá cần quan tâm nhiều hơn)
+            -> Chỗ này nói hơi nhầm xíu, thật ra nên check cái đồ thị Precision Recall thay vì ROC
+    4. Multi-class Classification
+        - Ý tưởng ngây thơ 1: One versus Rest (OvR hoặc OvA): Mỗi class một mô hình, xong tính điểm các mô hình (Nó có phải lớp A hay không ?)
+        - Ý tưởng ngây thơ 2: One versus One (OvO): Ý tưởng na ná nhưng mà sẽ xây mô hình phân loại A hoặc B
+    5. Error Analysis
+        - Bắt đầu in ra Confussion matrix để coi các nhãn nào bị lẫn lộn nhiều nhất
+        - Số to quá thì hiện phần trăm nhầm lẫn
+    6. MultiLabel Classification
+        1. Nếu mô hình ML không hỗ trợ thì dùng ClassifierChain
+            -  Mỗi mô hình trong ClassifierChain phụ trách một label cần xử lý và mốc nối với nhau
+        2. Một số mô hình ML giải quyết được Multilabel Classification
+    7. Multioutput Classification
+        - Chương này thì cũng không nói gì mấy
+        - Multiouput vì nó vừa phải học nếu đó là Số 7 thì cần xóa noise chỗ nào, giữ color chỗ nào
+        - Cách giải thì cũng chỉ ccaafn thay phần y cần predict thành X_train lúc Clean background là xong
