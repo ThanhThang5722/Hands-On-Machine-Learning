@@ -119,3 +119,59 @@
             - Là công thức tổng quát của Logistic Regression để xử lý trên đa class
         5. Cross Entropy (Loss Function trong Classification)
 5. Chương 5: Support Vector Machine
+    1. Linear SVM Classification
+        - SVM Chọn đường phân cách sao cho xa các điểm dữ liệu gần nhất có thể
+        - Margin: Hai đường nét đứt song song || Khoảng cách từ đường phân lớp đến các điểm gần nhất
+        - Hard Margin: Không cho phép bất kỳ điểm dữ liệu nằm ngoài vùng margin
+        - Soft Margin: Cho phép một số điểm dữ liệu
+        - C paramater: Cho phép nhưng sẽ có hệ số phạt
+                        C càng cao phạt càng nặng nếu nằm ngoài vùng
+                    - C cao -> Dễ Underfitting
+                    - C thấp -> Dễ Overfitting
+        * Mấy cái điểm ngoại lệ đó là một Support Vector
+    2. Non Linear SVM Classification
+        1. Polynominal Kernel
+        2. Trong SVC nó có paramater (kernel="poly", degree=3) mô hình nó tự dựng thành hàm đa thức mà không cần thật sự tạo thêm đặc trưng
+            -> Cái này người ta làm sẵn nên sẽ tối ưu hơn.
+        3. Similarity Features
+            - Đây là một cách khác xử lý Non Linear Data
+            - Ta sẽ thêm Feature là độ liên quan đến dữ liệu rbf_kernel đối với một landmark nào đó.
+            - Vậy làm sao để biết điểm nào là Landmark quan trọng để mà chọn?
+            ==> Chọn hết cũng được mà tăng chi phí tính toán
+            - Hàm tính toán độ tương đồng: Gaussian RBF Kernel
+            - Kernel trick mới làm được chỉnh paramater kernel="rbf", gamma=5, C=0.001
+            - Kernel Trick tự cho ra performance good mà không thêm nhiều điểm dữ liệu
+        4. SVM Linear Regression
+            - Chỉ cần thay đổi hàm mục tiêu, ta sẽ cố gắng sao cho tất cả các điểm nằm trong Margin
+            --> Epsilon = khoảng cách 2 margin, epsilon càng nhỏ
+            --> Càng nhiều support vector -> Overfitting
+        5. Under the hoot of SVM Linear Regression
+            - Skip toán nha ae <(")
+6. Chương 6: Decisions Tree
+
+7. Chương 7: Ensemble Learning and Random Forest
+
+8. Chương 8: Dimensionally Reduction
+
+9. Chương 9: Unsupervised Learning Techniques
+
+10. Chương 10: Introduction to Artificle Neural Network with Keras
+
+11. Training Deep Neural Network
+
+12. Custom Models and Training with Tensorflow
+
+13. Loading and Preprocessing Data with Tensorflow
+
+14. Deep Computer Vision Using Convolutional Neural Networks
+
+15. Processing Sequences Using RNNs and CNNs
+
+16. Natural Language Processing with RNNs and Attention
+
+17. Autoencoders, GANs, and Diffusion Models
+
+18. Reinforcement Learning
+
+19. Training and Deploying Tensorflow Models at Scale
+
