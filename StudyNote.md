@@ -148,7 +148,8 @@
         5. Under the hoot of SVM Linear Regression
             - Skip toán nha ae <(")
 6. Chương 6: Decisions Tree
-
+    - Nhắc lại lý thuyết ít ít
+    - 
 7. Chương 7: Ensemble Learning and Random Forest
 
 8. Chương 8: Dimensionally Reduction
