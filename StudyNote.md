@@ -151,9 +151,32 @@
     - Nhắc lại lý thuyết ít ít
     - 
 7. Chương 7: Ensemble Learning and Random Forest
-
-8. Chương 8: Dimensionally Reduction
-
+    - Wishdom of Crowd
+    1. Voting Classifiers
+    2. Essemble: Nhiều mô hình nhưng train trên tập train như nhau
+    3. Bagging: Mỗi mô hình train một tập khác nhau
+        + Pasting: Là khi các tập train này hoàn toàn độc lập
+        + Out of Bag (OOB): Các dữ liệu không được dùng tron train
+        -> OOB Error: Mỗi mô hình chỉ cho nhìn thấy 63% dữ liệu 37% còn lại để test
+        + Random Patches: Lấy bao dòng tùy ý, lấy bao cột tùy ý
+        + Random Subspaces: Lấy tất cả dòng, nhưng sẽ tách số cột (features)
+    4. Random Forest: Là Essemble của các Decision Tree
+        - Extra-Tree (Extremely randomized Tree) Random Forest + Random Features
+        - Feature Important: Sklearn đo độ quan trọng feature bằng cách
+                Xem Feature đó giúp giảm bao nhiêu Impurity
+    5. Boosting: Train nhiều cây nhưng tuần tự
+        1. AdaBoost: Cây sau sẽ tập trung train các dữ liệu được tăng trọng số
+        2. Gradient Boost: Cây sau được khởi tạo khớp với Gradient âm của cây trước đó
+                        (Coi cây trước dự đoán sai bao nhiêu tự tìm cách học để bù đắp chỗ đó)
+                        => Siêu dễ Overfitting
+        3. XGBoost: Có thêm các hàm tối ưu cho Gradient Boost
+        4. Histogram-based Gradient Boost
+            Nó có bước xử lý dữ liệu, chia các bin, và tìm vị trí có sự thay đổi Loss nhiều nhất
+            Chia lại dữ liệu, Oke rồi thì train các cây
+        5. Stacking
+            - Thay vì nghĩ xem nên kết hợp thế nào (lấy trung bình hay tuần tự)
+            - Ta train một mô hình học cách kết hợp (Blender)
+            - Phải train mô hình Blender này theo K-Fold nha, nó overfit dữ luôn á
 9. Chương 9: Unsupervised Learning Techniques
 
 10. Chương 10: Introduction to Artificle Neural Network with Keras
