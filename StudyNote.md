@@ -177,6 +177,41 @@
             - Thay vì nghĩ xem nên kết hợp thế nào (lấy trung bình hay tuần tự)
             - Ta train một mô hình học cách kết hợp (Blender)
             - Phải train mô hình Blender này theo K-Fold nha, nó overfit dữ luôn á
+8. Chương 8: Dimensionality Reduction
+    1. The Curse of Dimensionality
+        - Mỗi Feature là một chiều
+        - Nhưng Data thường tập trung ở đường biên -> Tạo hẳng một chiều nhưng dữ liệu chỉ tập trung nhất định thôi
+        -> Tức là chỉ có một phần nó quan trọng thôi
+        -> Nhu cầu về giảm số chiều
+    2. Các cách tiếp cận chính để giảm chiều dữ liệu
+        1. Projection
+            - Phép chiếu: VD không gian ba chiều thì tìm mặt phẳng để chiếu các điểm dữ liệu này
+        2. Manifold Learning
+            - Projection là chiếu thẳng
+            - Manifold tin rằng Data có thể nằm trên một mặt phẳng cong (Khác chiếu thẳng VD Địa cầu -> 2D Map)
+            - Một số thuật toán:
+                + Isomap
+                + LLE (Locally Linear Embedding)
+                + t-SNE
+                + UMAP
+        3. PCA: Principal Component Analysis
+            - Tìm một trục sao chiếu dữ liệu lên nó được dài nhất
+            - Đầu tiên tìm PC1: Principle Components
+            - Tìm đường PC2: Vuông góc với PC1 và chiếu xuống đường này?
+            - Nhưng thực tế người ta có công thức gọi là SVD tính theo ma trận nó tiện hơn.
+        4. Random Projection
+            - Cho lẹ thì người ta ấy cho lẹ
+            - Sklearn có GaussianRandomProjection
+            - Và có cả SpareRandomProjection
+        5. LLE: Locally Linear Embedding
+            - Mỗi điểm sẽ tính mức độ liên hệ với các điểm kề cạnh
+            - Sau đó chọn mặt phẳng sao cho bảo tồn được mối quan hệ này nhất
+        6. Một số thuật toán giảm chiều khác
+            - sklearn.manifold.MDS: giảm chiều và phải ráng giữ khoảng cách các điểm
+            - sklearn.manifold.Isomap: Cố gắn giữ thứ tự các điểm
+            - klearn.manifold.TSNE: Dùng phân phối t embedding
+            - sklearn.discriminant_analysis.LinearDiscriminantAnalysis (LDA): Dùng Linear để phân lớp trước và giảm số chiều và cố giữ cho các class này xa nhau nhất có thể
+                --> Rất phù hợp với Classification Algorithm phía sau.
 9. Chương 9: Unsupervised Learning Techniques
 
 10. Chương 10: Introduction to Artificle Neural Network with Keras
