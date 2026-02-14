@@ -213,9 +213,58 @@
             - sklearn.discriminant_analysis.LinearDiscriminantAnalysis (LDA): Dùng Linear để phân lớp trước và giảm số chiều và cố giữ cho các class này xa nhau nhất có thể
                 --> Rất phù hợp với Classification Algorithm phía sau.
 9. Chương 9: Unsupervised Learning Techniques
-
+    - Một số task trong Unsupervised Learning:
+        + Clustering
+        + Anomaly Detection
+        + Density Estimation: Cố gắng tái tạo mô hình phân bố
+    1. Phân cụm
+        1. KMeans
+            - KMeans hoạt động thế nào?
+            - Cần phân K nhóm, cần tìm K tâm, sao cho cách phân lớp ổn định
+            - Đầu tiên: Khởi tạo K tâm ở vị trí ngẫu nhiên
+            - Mainstep 1 - Phân nhóm: Một điểm nằm gần tâm nào thì thuộc về nhóm đó
+            - Mainstep 2 - TÌm tâm: Với mỗi nhóm set lại tâm sao cho nó là Mean các điểm.
+            - Lặp lại đến khi ổn định
+            * Có cách khởi tạo K nhóm đầu tiên cho tối ưu, nào dùng thì search lại nha
+            * Mini batch KMeans: Cũng vậy
+                - Nhưng mà nó cho phép mỗi lần di chuyển điểm K dựa trên một nhóm nhỏ dữ liệu thôi
+                --> Không cần load tất cả dữ liệu vào trong
+                -- Performance vẫn tốt
+                -- Lại còn Train nhanh
+            * Chọn K sao cho tối ưu
+                - Kỹ thuật 1: Vẽ đồ thị số Instances mỗi class, vẽ biểu đồ chọn khúc khuỷu tay
+                - Kỹ thuật 2: silhouette score
+                    - Tại mỗi điểm
+                    - Tổng Tỉ lệ của (Khoảng cách tâm gần nhất) / (Trung bình khoản cách đến các tâm khác)
+                    - Kiểm tra mức độ ổn định của các nhóm - có nên chia Data vậy không      
+        2. Hạn chế của KMeans
+            - Khó Scale: Thêm dữ liệu là phải chạy lại một lần mới chuẩn
+            - Với số lượng dữ liệu tăng lên (mật độ same same) thì vùng bao khác nhau dữ luôn á
+        3. Image Segmentation
+            - Ảnh thì nó nhiều màu, giờ mình coi nó gần k màu nào nhất rồi thay nhãn --> Simple Image Segmentation
+        4. Dùng Clustering cho Semi-supervised Learning
+            - Concept này khá mới đối với mình
+            - Chỉ có một số dữ liệu được gán nhãn -> Mỗi nhãn là một tâm cụm
+            - 50 cụm dù số nhãn thực tế ít hơn cũng không sao.
+            - Dùng KMean, tính khoản cách coi cái ảnh đó gần với Image nào rồi gán nhãn cho nó
+            - Xong rồi dùng một cái mô hình khác để train lại đóng này
+        * Kỹ thuật loại bỏ các biến ở 1% biên
+            - Nếu mà dữ liệu thuộc 1% ngoại lai thì thôi cho Distance = -1
+            => Lúc train nó sẽ bị loại luôn không đóng góp vào mô hình.
+    2. DBScan
+        - Ngon hơn KMean, vì có thể phân cụm phi tuyến
+        - Cách hoạt động:
+            Step A: Duyệt điểm
+                + Nếu chưa thăm và điểm đó Nằm gần với Cụm trước đó (Khoảng cách trong ngưỡng cho phép)
+                + Thì tạo một cụm mới và qua Step B
+            Step B: Vét điểm
+                + Tiếp tục duyệt các điểm chưa duyệt, Nếu khoảng cách đến Core Point vẫn Oke thì thêm nó vô
+    3. Gaussian Mixtures
+        - Insert Toán chỗ này
+        - Giả định rằng dữ liệu sinh ra theo phân phối gaussian và cố gắng phân lớp theo công thức
+        * Bayesian Gaussian Mixture Models: Cũng vậy mà kẹp thêm Bayesian
 10. Chương 10: Introduction to Artificle Neural Network with Keras
-
+    
 11. Training Deep Neural Network
 
 12. Custom Models and Training with Tensorflow
