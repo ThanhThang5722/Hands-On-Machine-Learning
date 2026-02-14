@@ -264,7 +264,16 @@
         - Giả định rằng dữ liệu sinh ra theo phân phối gaussian và cố gắng phân lớp theo công thức
         * Bayesian Gaussian Mixture Models: Cũng vậy mà kẹp thêm Bayesian
 10. Chương 10: Introduction to Artificle Neural Network with Keras
-    
+    1. Hisotry
+        1. The perceptron: mạng ANN cơ bản nhất - 100% là hàm tuyến tính
+        2. The Multilayer Perceptron: Chồng nhiều lớp tuyến tính thôi
+        3. Regression MLPS: Các lớp trước vẫn là tuyến tính, lớp cuối là Acitvation thôi
+    2. Cài đặt MLP với Keras
+        - TF hắn có các Callback sẵn, từ save best model hay gì đó,...
+        - TensorBoard thấy không giòn lắm, chắc cần nghiên cứu cách log khác
+    3. Fine-tuning Trọng số
+        - Người ta dùng keras_tunner nhưng mà thấy nó k thực tế bây giờ lắm
+        - Nó tìm cách tối ưu rất nhiều phần, kiến trúc mô hình, số node ...
 11. Training Deep Neural Network
 
 12. Custom Models and Training with Tensorflow
