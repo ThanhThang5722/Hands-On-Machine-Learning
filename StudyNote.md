@@ -361,7 +361,7 @@
         - Dropout: Tạm thời tắt node trong lúc train => Cải tiến hơn thì nó có cái Paper là MCDropout
         - Max-Norm Regularization: Không cho phép weight của một Node vượt ngưỡng
 12. Custom Models and Training with Tensorflow
-
+ 
 13. Loading and Preprocessing Data with Tensorflow
 
 14. Deep Computer Vision Using Convolutional Neural Networks
