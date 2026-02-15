@@ -275,7 +275,91 @@
         - Người ta dùng keras_tunner nhưng mà thấy nó k thực tế bây giờ lắm
         - Nó tìm cách tối ưu rất nhiều phần, kiến trúc mô hình, số node ...
 11. Training Deep Neural Network
-
+    1. Vấn đề Vanishing/Exploding Gradients
+        - Vanishing Gradients: Gradient nhỏ dần khi lan truyền ngược, dẫn đến các Layer về sau không học được
+        - Exploding Gradients: Gradient lớn dần khi lan truyền ngược, dẫn đến Đạo hàm các lớp đầu đi sai hướng
+        - Nguyên nhân:
+            + Dùng Sigmoid
+            + Hàm khởi tạo không phù hợp -> tính activation ra ~ 0 hoặc ~ 1
+            + Phương sai tăng dần qua các tầng
+        1. Kết quả từ Paper 2010 của Xavier Glogot và Yoshua Bengio
+            1. Ta cần chọn hàm khởi tạo phù hợp
+                - Sigmoid/TanH -> Dùng Xavier
+                - ReLU  -> Dùng He
+                - SELU -> Dùng LeCun
+            2. ReLU ngon hơn Sigmoid
+                - Với Sigmoid khi X rất lớn hoặc rất nhỏ, nên đạo hàm sẽ ~ 0 -> Vanishing Gradients
+                - Đạo hàm của ReLU = 1 với mọi x > 0, với ReLU tính nhanh hơn Sigmoid
+            3. LeakyReLU ngon hơn ReLU
+                - Nhưng ReLU vẫn có điểm yếu
+                - Dying ReLU: Đối với các trường hợp x <=0 thì đạo hàm = 0
+                -> Node đó chết luôn
+                => LeakyReLU có y=ax nếu x <= 0 điều này giúp cho đạo hàm không chết hẳng
+            4. PReLU: Tiến hóa của LeakyReLU khi hệ số Alpha là học qua backprop không phải tự quy ước.
+                - Tốt hơn khi Dataset lớn
+                - Dễ Overfitting với Dataset nhỏ
+            5. Gradient Clipping
+                - Cắt (giới hạn) độ lớn của Gradient khi backprop
+                - Chia tỉ lệ để miền giá trị của Gradient Descent về vùng cho phép
+    2. Transfer Learning: Tận dụng lại các Layer đã được huấn luyện từ trước
+        - Cố gắng tận dụng lại Layer đã được huấn luyện trước.
+        - Khi nào thì dùng:
+            + Có overlap
+            + Dùng cùng Low-level Feature
+        - Step thực hiện:
+            1. Giữ các convolution layer cũ
+            2. Bỏ classifier cũ
+            3. Thêm classifier mới
+            4. Fine-tune
+        - Cách Free:
+            1. Bước 1: Freeze toàn bộ backbone Feature Extraction Mode
+                - Không cập nhật weight mà chỉ train Classifier mới
+                - Đây gọi là Feature extraction Mode
+            2. Unfreeze từng phần
+                - Khi mô hình chạy ổn
+                - Unfreeze 1-2 hidden layer trên cùng
+                - Cho backprop update nhẹ
+            3. Bao nhiêu Layer nên Unfreeze?
+                - Nếu ít dữ liệu -> Freeze nhiều
+                - Nhiều Data -> Unfreeze nhiều
+            4. Unsupervised Learning
+                - Cố gắn train autoencoder/GANs để học cách biểu diễn dữ liệu: Unsupervised
+                - Sau đó train một layer cuối với Supervised
+    3. Các Optimizer nhanh hơn
+        - Trong Gradient Descent ta sẽ thêm một biến vận tốc
+        - Nó đóng vai trò kiểm tra nếu vấn đi về hướng đó thì sẽ đi nhanh hơn
+        - Vận tốc V: Trung bình mũ của các Gradient trước đó
+        - Nếu mà Gradient bị đổi hướng liến tục -> Momentum nó giúp ổn định lại
+        - NAG: Nesterov Accelarated Gradient
+            - Ở vận tốc nó sẽ tham khảo thêm một giá trị vị trí dự đoán
+            - Giá trị đoán = giá trị hiện tại + nếu đi tiếp theo V
+        - AdaGrad:
+            + Cái này hợp với NLP nè
+            + Kiểu Cấu hình Gradient nào gặp lại rồi thì giảm trọng số
+            + Áp dụng: Nếu mà mình đi tìm từ nào đó hiếm hiếm thì cái này ngon
+        - RMSProp:
+            + Quan tâm đến các giá trị gần đây hơn
+            + Cộng vào theo dạng Moving Average
+        - ADAM: Adaptive Movement Estimation
+            + Kết hợp ý tưởng của Momentum và RMSProp
+            + Trong công thức Có một Vector chứa vector v
+            + Và có một công vector cộng trung bình của các vector gần đây
+        - AdamW:
+            + Công thức toán của Adam không đảm bảo tách 
+            + Cố gắng giảm số node nhưng performance vẫn ngon
+            + Cách 1: Tự động cắt node
+            + Cách 2: Dùng L1
+            + Dùng thêm TensorFlow Model Optimization Toolkit (TF-MOT) là ngon luôn
+    4. Learning Rate Schedule
+        - Nó cũng có vài chiến thuật để train, mà thôi chill chill đi
+        - Tensorflow nó có hàm 
+        - lr_scheduler = tf.keras.callbacks.LearningRateScheduler(exponential_decay_fn)
+        - thêm thằng này vào callback
+    6. Tổng kết và hướng dẫn thực hành
+        - L1: Cho trọng số của Node về 0 luôn
+        - L2: Có công thức để giảm trọng số, nhưng không hoàn toàn loại nó
+        - Dropout: Tạm thời tắt node trong lúc train => Cải tiến hơn thì nó có cái Paper là MCDropout
+        - Max-Norm Regularization: Không cho phép weight của một Node vượt ngưỡng
 12. Custom Models and Training with Tensorflow
 
 13. Loading and Preprocessing Data with Tensorflow
