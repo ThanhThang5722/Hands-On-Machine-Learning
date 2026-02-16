@@ -361,7 +361,50 @@
         - Dropout: Tạm thời tắt node trong lúc train => Cải tiến hơn thì nó có cái Paper là MCDropout
         - Max-Norm Regularization: Không cho phép weight của một Node vượt ngưỡng
 12. Custom Models and Training with Tensorflow
- 
+    - Tóm tắt những thứ Tensorflow cung cấp:
+        + Core giống Numpy, có GPU hỗ trợ
+        + Tính toán phân phối giữa các máy
+        + Just-in-time (JIT) compiler, khai thác Computation Graph từ Python
+        + Chạy được trên môi trường khác (Java and on Android Device)
+        + Optimize Function
+    1. Dùng TensorFlow như Numpy
+        - nhìn cái tên -> Dòng chảy Tensor
+        - Tensor: mảng đa chiều ~ numpy ndarray.
+        - Scalar: Giá trị mà một giá trị (đơn giản) mà tensor mang
+        - Một số kiểu dữ liệu khác
+            + Sparse tensors
+            + Tensor Array
+            + Ragged tensors
+            + String Tensors
+            + Set & Queues
+    2. Custom Mô hình và thuật toán huấn luyện
+        + Custom Loss Function
+        + Các thể loại Custom khác
+            - Activation Function
+            - Initializers
+            - Regularizers
+            - Constraints
+        - Hãy để ý về Batch Metrics và Streaming Metrics
+        - Automatic Differentiation (Auto-diff):
+            + Tensorflow dùng reverse-mode autodiff (còn gọi lại backpropagation)
+            + Cái này phải để ý set tay khi muốn custom mô hình
+        - Custom Training loop - Giống bình thường mình hay làm
+            + Do mình muốn tự hiển thị các custom metrics
+            + Nói chung nó phức tạp hơn các thường làm với cái Autodiff phía trên
+    3. Tensorflow Function và Graph
+        1. AutoGraph và Tracing
+            - Auto Graph là do trong Tensorflow nó đọc hiểu code trước
+            - Chạy song song các kiểu, nó nhanh hơn
+            - Nên nếu mà khi mình Custom Train Loop thì có thể cân nhắc dùng cái này nó sẽ càng tối ưu hơn
+        2. TF Function Rules
+            1. Không dùng Numpy/Python bình thường trong Graph nếu Tensorflow có
+            2. Random của Numpy chỉ chạy một lần -> Tf.random
+            3. Side Effect chỉ chạy khi trace
+            4. Có thể nhưng không nên dùng tf.py_function
+            5. Không nên tạo biến trong tf.function nhiều lần -> Tạo sẵn trước đi
+            6. Code phải có source mới Trace được, không là lỗi
+            7. Loop phải dùng tf.range()
+            8. Ưu tiên Vectorization hơn Loop
 13. Loading and Preprocessing Data with Tensorflow
 
 14. Deep Computer Vision Using Convolutional Neural Networks
