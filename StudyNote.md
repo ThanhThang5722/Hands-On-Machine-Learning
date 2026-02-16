@@ -406,7 +406,8 @@
             7. Loop phải dùng tf.range()
             8. Ưu tiên Vectorization hơn Loop
 13. Loading and Preprocessing Data with Tensorflow
-
+    - Chương này thất vọng hơn mình nghĩ
+    - Kiểu nó giới thiệu về một số chức năng trong Tensorflow
 14. Deep Computer Vision Using Convolutional Neural Networks
 
 15. Processing Sequences Using RNNs and CNNs
